@@ -62,45 +62,49 @@ for (let i = 0; i < map.length; i++){
     }
     mazeDiv.appendChild(rowDiv);
 }
- function checkMap() {
 
- }
 
 document.addEventListener('keydown', (event) => {
   const keyName = event.key;
+  
   if (event.key === "ArrowLeft"){
-      if (x > 0){
+      
+      if ([" ","S","F"].indexOf(map[y][x-1]) > -1){
+         //console.log(map[x-1][y])  
         x = x - 1;
         boxLeft -= 20;
-        box.style.left = boxLeft + "px";
-      }
-      
+     
+    }
   }else if (event.key === "ArrowRight"){
-      if (x < 20){
+      //console.log([" ","S","F"].indexOf(map[y][x+1]));
+    if ([" ","S","F"].indexOf(map[y][x+1])> -1){
       x = x + 1
       boxLeft += 20;
-      box.style.left = boxLeft + "px";
+      
   }
 }
   if (event.key === "ArrowUp"){
-      if (y > 0){
+    if ([" ","S","F"].indexOf(map[y-1][x])> -1){
         y = y - 1;
         boxTop -= 20;
-        box.style.top = boxTop + "px";
+        
       }
      
   }else if (event.key === "ArrowDown"){
-      if ( y < 14){
+    if ([" ","S","F"].indexOf(map[y+1][x])> -1){
       y = y + 1;
       boxTop += 20;
-      box.style.top = boxTop + "px";
+      
   }
-  
-}
+ }
 
-console.log("x :",x,"y :",y);
+ 
 
   //console.log('keydown event\n\n' + 'key: ' + keyName);
   document.getElementById("box").style.left = boxLeft + "px";
   document.getElementById("box").style.top = boxTop + "px";
+  if (map[y][x] == "F"){
+    alert("win")
+  }
+ 
 });
